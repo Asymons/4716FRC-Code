@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+sourceSets {
+	main.java.srcDir "src/"
+}
+
+jar {
+    baseName = '2015-robot'
+    version =  '0.0.1'
+    manifest.attributes "Main-Class": "org.usfirst.frc.team4716.robot.Robot"
+}
