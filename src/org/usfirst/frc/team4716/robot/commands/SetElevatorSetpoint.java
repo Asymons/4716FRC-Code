@@ -15,13 +15,13 @@ public class SetElevatorSetpoint extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.setpoint = setpoint;
-    	//requires(Robot.elevator);
+    	requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//    	Robot.elevator.enable();
-//    	Robot.elevator.setSetpoint(setpoint);
+    	Robot.elevator.enable();
+    	Robot.elevator.setSetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,24 +30,28 @@ public class SetElevatorSetpoint extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-//    	if(Robot.elevator.onTarget() == false  && Robot.elevator.limitGet() == true){
+//    	if(Robot.elevator.getEncoderDistance() > setpoint){
 //    		return true;
-//    	}else if(Robot.elevator.onTarget() == false && Robot.elevator.limitGet() == false){
-//    		return false;
+//    	}else if(setpoint == 0 && Robot.elevator.getEncoderDistance() < 30){
+//    		return true;
 //    	}else{
-//    		return Robot.elevator.onTarget();
+//    		return false;
 //    	}
-    	
-    	return true;
+    	return Robot.elevator.onTarget();
+
     	
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.disable();
+    	Robot.elevator.moveElevCIM(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.elevator.disable();
+    	Robot.elevator.moveElevCIM(0);
     }
 }

@@ -59,7 +59,7 @@ public class OI {
 
 	public OI() {
 
-		but3.whileHeld(new Drive_Forward_Manul(2.0, stick.getY()));
+//		but3.whileHeld(new Drive_Forward_Manul(2.0, stick.getY()));
 
 		sbut1.whenPressed(new ElevatorLiftProcess());
 		sbut2.whenPressed(new ElevatorUnloadProcess());
@@ -76,7 +76,7 @@ public class OI {
 		tbut1.whenPressed(new ElevatorLiftProcess());
 		tbut2.whenPressed(new HoldSystemLock()); // Moves Tilt Forward
 		tbut3.whenPressed(new HoldSystemRelease()); // Moves Tilt back
-		tbut4.whenPressed(new SetElevatorSetpoint(580));
+		tbut4.whenPressed(new SetElevatorSetpoint(2000));
 
 		tbut6.whenPressed(new LiftPull()); // tilt pull
 		tbut7.whenPressed(new LiftPush()); // tilt push

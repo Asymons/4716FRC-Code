@@ -160,10 +160,10 @@ public class DriveTrain extends Subsystem {
     public void turnAngle(double _speed, double _angle, boolean _isRight){
     	double leftpow,rightpow;
     	if (_isRight == true && Math.abs(gyro.getAngle()) < _angle){
-    		rightpow = _speed - (gyro.getAngle()/_angle) * _speed;
+    		rightpow = _speed; //- (gyro.getAngle()/_angle) * _speed;
     		tankDrive(0, rightpow);
     	}else if(_isRight == false && Math.abs(gyro.getAngle()) < _angle){
-    		leftpow = _speed - (gyro.getAngle()/_angle) * _speed;
+    		leftpow = _speed;// - (gyro.getAngle()/_angle) * _speed;
     		tankDrive(leftpow,0);
     	}
     }

@@ -6,24 +6,26 @@ import org.usfirst.frc.team4716.robot.commands.StopElevator;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class Elevator extends Subsystem {
+public class Elevator extends PIDSubsystem {
 	   
     private SpeedController leftElevCIM, rightElevCIM;
     private Encoder elevEncoder;
     private DigitalInput limit;
+    private PIDController pid;
     
     public Elevator(){
     	//objects
+    	super("Elevator", 0.05,0,0.1);
     	leftElevCIM = new Talon(4);
     	rightElevCIM = new Talon(7);
     	limit = new DigitalInput(6);
@@ -31,7 +33,7 @@ public class Elevator extends Subsystem {
     							  false, EncodingType.k4X);
     	//properties
     	elevEncoder.setDistancePerPulse(1.0); //inches per pulse 
-    	
+    	setAbsoluteTolerance(50);
     	
     	//live window
     	LiveWindow.addActuator("Elevator", "Elevator CIM", (Talon) leftElevCIM);
@@ -66,5 +68,20 @@ public class Elevator extends Subsystem {
     public void smartDashLog(){
     	SmartDashboard.putNumber("Elevator Encoder", elevEncoder.getDistance());
     }
+    
+    protected double returnPIDInput() {
+        return elevEncoder.pidGet();
+    }
+
+
+    /**
+     * Use the motor as the PID output. This method is automatically called by
+     * the subsystem.
+     */
+    protected void usePIDOutput(double d) {
+        leftElevCIM.set(-d);
+        rightElevCIM.set(-d);
+    }
+    
 }
 
