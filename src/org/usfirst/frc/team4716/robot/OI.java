@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4716.robot;
 
-import org.usfirst.frc.team4716.robot.commands.Drive_Forward_Manul;
 import org.usfirst.frc.team4716.robot.commands.ElevatorLiftProcess;
 import org.usfirst.frc.team4716.robot.commands.ElevatorUnloadProcess;
 import org.usfirst.frc.team4716.robot.commands.HoldSystemLock;
@@ -18,15 +17,35 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * 
+ * Author: Alessio Symons
+ * Class: OI
+ * Summary: This class is the OI class, aka Input Output Class. Its main purpose
+ * is to create the Joystick class such that a Joystick can be used to interact
+ * with the commands. 
  */
 public class OI {
+
+	/*
+	 * Declare the Joysticks used. Usually there are two  
+	 * joysticks for robot control, one for test commands 
+	 * 
+	 * 		Constructor - 
+	 * 		n - Port Number, Integer.
+	 * 
+	 */
 
 	Joystick stick 		= new Joystick(0);
 	Joystick stick2		= new Joystick(1);
 	Joystick control 	= new Joystick(2);
 	Joystick test 		= new Joystick(3);
 
+	/*
+	 * Declare the Joystick buttons used on the robot.	
+	 * 
+	 *		Constructor - 
+	 *		joystick - Joystick object
+	 *		n - Button Number, Integer
+	 */
 	JoystickButton but1   = new JoystickButton(stick, 1);
 	JoystickButton but2   = new JoystickButton(stick, 2);
 	JoystickButton but3   = new JoystickButton(stick, 3);
@@ -57,10 +76,25 @@ public class OI {
 	JoystickButton tbut8  = new JoystickButton(test, 8);
 	JoystickButton tbut9  = new JoystickButton(test, 9);
 
+	
+	/*
+	 * Purpose of this constructor is to declare what buttons
+	 * do and put them in the SmartDashboard.
+	 */
 	public OI() {
-
-//		but3.whileHeld(new Drive_Forward_Manul(2.0, stick.getY()));
-
+		
+		
+		/*
+		 * These are all the joystick commands we use.
+		 * 
+		 * 		Joystick Commands -
+		 * 		whenPressed() - Does an action when button is pressed
+		 * 		and action is completed fully.
+		 * 		whenReleased() - Does an action when button is lifted
+		 * 		and action is completed fully.
+		 * 		whileHeld() - Does an action when button is pressed
+		 * 		downwards and constantly completes action until release.
+		 */
 		sbut1.whenPressed(new ElevatorLiftProcess());
 		sbut2.whenPressed(new ElevatorUnloadProcess());
 		sbut3.whenPressed(new ResetRobot());
@@ -82,7 +116,19 @@ public class OI {
 		tbut7.whenPressed(new LiftPush()); // tilt push
 		tbut8.whileHeld(new ManualElevUp());
 		tbut9.whileHeld(new ManualElevDown());
-
+		
+		
+		/*
+		 * These are all the SmartDashboard Commands.
+		 * 
+		 * 		Joystick Commands -
+		 * 			putData()- 
+		 * 			Puts information about command on SmartDashboard	
+		 * 				Parameters -
+		 * 				name - String
+		 * 				command - create a new object which will be the command
+		 */
+		
 		SmartDashboard.putData("Elevator Lift Process", new ElevatorLiftProcess());
 		SmartDashboard.putData("Hold System Lock", new HoldSystemLock());
 		SmartDashboard.putData("Hold System Release", new HoldSystemRelease());
@@ -90,6 +136,14 @@ public class OI {
 		SmartDashboard.putData("Lift Push", new LiftPush());
 
 	}
+	
+	
+	/*
+	 * These are all the getters for the joysticks
+	 * 		return - 
+	 * 		getX() - Returns x value of joystick
+	 * 		getY() - Returns y value of joystick
+	 */
 
 	public double getLeftSpeed() {
 		return stick.getY();
