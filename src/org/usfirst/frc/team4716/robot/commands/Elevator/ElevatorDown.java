@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.Elevator;
 
 import org.usfirst.frc.team4716.robot.Robot;
 
@@ -7,18 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ManualElevUp extends Command {
+public class ElevatorDown extends Command {
+	
+	double dist;
+	double speed;
 
-    public ManualElevUp() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ElevatorDown(double _speed,double _distance) {
+    	this.dist = _distance;
+    	this.speed = _speed;
     	//requires(Robot.elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
-    	Robot.elevator.moveElevCIM(-0.95);
+    	if(Robot.elevator.limitGet() == false && Robot.elevator.getEncoderDistance() >= dist){
+    	Robot.elevator.moveElevCIM(speed);
+    	System.out.println("Elevator Going Up");
+    	}
+
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,17 +33,25 @@ public class ManualElevUp extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	 if (Robot.elevator.getEncoderDistance() >= dist){
+         	return false;
+         } else if(Robot.elevator.getEncoderDistance() <= dist || Robot.elevator.limitGet() == true) {
+         	return true;
+         } else {
+        	 return true;
+         }
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.elevator.moveElevCIM(0);
+    	
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.elevator.moveElevCIM(0);
+    	end();
     }
 }

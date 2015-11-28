@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4716.robot.commands.AutoDoNothing;
-import org.usfirst.frc.team4716.robot.commands.AutoMoveBinForward;
-import org.usfirst.frc.team4716.robot.commands.AutoMoveForwardStraight;
 import org.usfirst.frc.team4716.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4716.robot.subsystems.Elevator;
-import org.usfirst.frc.team4716.robot.subsystems.HoldSystem;
+import org.usfirst.frc.team4716.robot.commands.auto.AutoDoNothing;
+import org.usfirst.frc.team4716.robot.commands.auto.AutoMoveBinForward;
+import org.usfirst.frc.team4716.robot.commands.auto.AutoMoveForwardStraight;
+import org.usfirst.frc.team4716.robot.subsystems.Clamp;
 import org.usfirst.frc.team4716.robot.subsystems.Lift;
 //import org.usfirst.frc.team4716.robot.subsystems.PIDElevator;
 
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain drivetrain = new DriveTrain();
 	public static final Elevator elevator = new Elevator();
 	public static final Lift lift = new Lift();
-	public static final HoldSystem holdsystem = new HoldSystem();
+	public static final Clamp clamp = new Clamp();
 	public static OI oi;
 	public NIVision.Rect rect;
 
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
 		//camera
 		server1 = CameraServer.getInstance();		
 		server1.setQuality(30);
-		//server1.startAutomaticCapture("cam0");
+		server1.startAutomaticCapture("cam0");
 		
 		//timer
 		gameTimer = new Timer();
@@ -118,12 +118,12 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	drivetrain.smartDashLog();
     	elevator.smartDashLog();
-    	holdsystem.smartDashLog();
+    	clamp.smartDashLog();
     	lift.smartDashLog();
 
     	SmartDashboard.putData(drivetrain);
         SmartDashboard.putData(elevator);
-        SmartDashboard.putData(holdsystem);
+        SmartDashboard.putData(clamp);
         SmartDashboard.putData(lift);
         SmartDashboard.putNumber("Elapsed Time", gameTimer.get());
         

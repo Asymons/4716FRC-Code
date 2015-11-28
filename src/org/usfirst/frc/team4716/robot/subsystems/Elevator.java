@@ -1,12 +1,11 @@
 package org.usfirst.frc.team4716.robot.subsystems;
 
 import org.usfirst.frc.team4716.robot.RobotMap;
-import org.usfirst.frc.team4716.robot.commands.StopElevator;
+import org.usfirst.frc.team4716.robot.commands.Elevator.StopElevator;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -21,7 +20,6 @@ public class Elevator extends PIDSubsystem {
     private SpeedController leftElevCIM, rightElevCIM;
     private Encoder elevEncoder;
     private DigitalInput limit;
-    private PIDController pid;
     
     public Elevator(){
     	//objects

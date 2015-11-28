@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
 *Steven Rice
 */
-public class HoldSystem extends Subsystem {
+public class Clamp extends Subsystem {
     
 	boolean hold = false;
 	DoubleSolenoid holdpiston;
 	
-	public HoldSystem() {
+	public Clamp() {
 		//objects
 		holdpiston = new DoubleSolenoid(2,3);
 		//holdpiston = new Solenoid(0);
@@ -34,18 +34,18 @@ public class HoldSystem extends Subsystem {
     }
     
     //setters
-    public void HoldOff() {
+    public void ClampOff() {
     	// Shut off both double solenoids
     	//holdpiston.set(true);
     }
     
-    public void HoldLock() {
+    public void ClampLock() {
     	// Forward both solenoids to close
     	holdpiston.set(DoubleSolenoid.Value.kForward);
     	hold = true;
     }
     
-    public void HoldRelease() {
+    public void ClampRelease() {
     	// Reverse both solenoids to open
     	holdpiston.set(DoubleSolenoid.Value.kReverse);
     	hold = false; 	

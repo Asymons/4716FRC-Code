@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4716.robot;
 
-import org.usfirst.frc.team4716.robot.commands.ElevatorLiftProcess;
-import org.usfirst.frc.team4716.robot.commands.ElevatorUnloadProcess;
 import org.usfirst.frc.team4716.robot.commands.HoldSystemLock;
 import org.usfirst.frc.team4716.robot.commands.HoldSystemRelease;
 import org.usfirst.frc.team4716.robot.commands.LiftPull;
@@ -9,8 +7,10 @@ import org.usfirst.frc.team4716.robot.commands.LiftPush;
 import org.usfirst.frc.team4716.robot.commands.ManualElevDown;
 import org.usfirst.frc.team4716.robot.commands.ManualElevUp;
 import org.usfirst.frc.team4716.robot.commands.ResetRobot;
-import org.usfirst.frc.team4716.robot.commands.SetElevatorSetpoint;
-import org.usfirst.frc.team4716.robot.commands.SpeedCommand;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.SpeedCommand;
+import org.usfirst.frc.team4716.robot.commands.Elevator.ElevatorLiftProcess;
+import org.usfirst.frc.team4716.robot.commands.Elevator.ElevatorUnloadProcess;
+import org.usfirst.frc.team4716.robot.commands.Elevator.SetElevatorSetpoint;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

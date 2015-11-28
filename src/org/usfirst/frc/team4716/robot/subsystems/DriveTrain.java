@@ -2,7 +2,7 @@ package org.usfirst.frc.team4716.robot.subsystems;
 
 import org.usfirst.frc.team4716.robot.RobotMap;
 import org.usfirst.frc.team4716.robot.Utils;
-import org.usfirst.frc.team4716.robot.commands.DriveWithJoystick;
+import org.usfirst.frc.team4716.robot.commands.DriveTrain.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;

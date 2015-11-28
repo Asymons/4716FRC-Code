@@ -1,17 +1,20 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class ElevatorUnloadProcess extends CommandGroup {
+public class ElevatorLiftProcess extends CommandGroup {
     
-    public  ElevatorUnloadProcess() {
-    	addSequential(new ElevatorUp(-0.7,1300));
-    	addSequential(new HoldSystemRelease());
-    	addSequential(new ElevatorDown(0.7,10));
-    	addSequential(new LiftPush());
+    public  ElevatorLiftProcess() {
+    	addParallel(new HoldSystemRelease());
+    	addSequential(new ElevatorUp(-0.9,3000));
+    	//addSequential(new Wait(1.0));
+    	addSequential(new HoldSystemLock());
+    	addSequential(new ElevatorDown(0.75,500));
+    	//addSequential(new StopElevator());
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

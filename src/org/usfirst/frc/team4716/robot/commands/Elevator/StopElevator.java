@@ -1,20 +1,20 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.Elevator;
 
 import org.usfirst.frc.team4716.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
-Steven Rice
-*/
-public class HoldSystemOff extends Command {
+ *
+ */
+public class StopElevator extends Command {
 
-    public HoldSystemOff() {
-    	requires(Robot.holdsystem);
+    public StopElevator() {
+    	requires(Robot.elevator);
     }
 
     protected void initialize() {
-    	Robot.holdsystem.HoldOff();
+    	Robot.elevator.moveElevCIM(0);
     }
 
     protected void execute() {

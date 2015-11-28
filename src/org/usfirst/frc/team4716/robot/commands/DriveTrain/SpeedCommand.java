@@ -1,42 +1,39 @@
-package org.usfirst.frc.team4716.robot.commands;
+package org.usfirst.frc.team4716.robot.commands.DriveTrain;
 
-import org.usfirst.frc.team4716.robot.Robot;
+import org.usfirst.frc.team4716.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Drive_Turn extends Command {
-	double speed,angle;
-	boolean isRight;
+public class SpeedCommand extends Command {
+	
+	boolean _fast;
 
-    public Drive_Turn(double _speed, double _angle, boolean _isRight) {
+    public SpeedCommand(boolean fast) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	this.speed = _speed;
-    	this.angle = _angle;
-    	this.isRight = _isRight;
-    	requires(Robot.drivetrain);
+
+    	_fast = fast;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivetrain.gyroReset();
+    	if(_fast == true){
+    		RobotMap.mFactor = 0.85;
+    	}else if(_fast == false){
+    		RobotMap.mFactor = 0.7;
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.turnAngle(speed, angle, isRight);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Math.abs(this.angle) >= Robot.drivetrain.gyroAngle()){
-        	return false;
-        }else{
-        	return true;
-        }
+        return true;
     }
 
     // Called once after isFinished returns true
@@ -46,5 +43,6 @@ public class Drive_Turn extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

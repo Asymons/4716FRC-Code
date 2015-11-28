@@ -52,9 +52,8 @@ public class RobotMap {
 	public static double ELEV_ENCODER_TRAVEL = 0;
 	
 	// PID
-    public static final double DRIVETRAIN_KP = 10.0;
-    public static final double DRIVETRAIN_KI = 0.01;
-    public static final double DRIVETRAIN_KD = 0.00;
+    public static final double DRIVE_KP = 0.05, DRIVE_KI = 0.0, DRIVE_KD = 0.1;
+    public static final double ELEVATOR_KP = 0.05, ELEVATOR_KI = 0.0, ELEVATOR_KD = 0.1;
     
     //Drive Constants
     public static double SENSITIVITY = 0.80;
